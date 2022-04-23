@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <form action="/send_studnotification" method="post">
+        
+        <select name="student_id" class="browser-default custom-select" aria-label="Default select example" required>
+            <option value="" disabled selected>Выберите студента</option>
+            
+            {% for i in groups_list %}
+            <optgroup value={{i.id}} label={{i.name}}>
+                {% for j in students_in_groups_list%}
+                {% if i.id==j[3] %}
+                <option value={{j[0]}}>{{j[1]}} {{j[2]}}</option>
+                {% endif %}
+                {% endfor %}
+            </optgroup>
+            {% endfor %}
+        </select>
+
+        
+        <div class="mb-3">
+            <input type="text" class="form-control btn-lg" name="notification_text" placeholder="Текст уведомления"
+                   required>
+        </div>
+        <input type="hidden" name="student_id" value="{{student_id}}">
+        <button type="submit" class="btn btn-info">Послать уведомление студенту</button>
+    </form>
+    <table class="mt-2 table">
+        <thead>
+        <tr>
+            <th scope="col">Студент</th>
+            <th scope="col">Уведомление</th>
+            <th scope="col">Дата</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for j in studnotifications %}
+        {% for k in j %}
+        <tr>
+            {% set ns = namespace(name="") %}
+            {%for i in students_in_groups_list %}
+            {% if i[0] == k.student_id %}
+            {%set ns.name = i[1]+ " "+i[2] %}
+            {% endif %}
+            {% endfor %}
+            <td>{{ns.name}}</td>
+            <th>{{k.text}}</th>
+            <th>{{k.date}}</th>   
+        </tr>
+        {% endfor %}
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

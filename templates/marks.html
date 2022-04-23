@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+.fixed {
+		position: fixed;
+		z-index: 99;
+		top: 0;
+	}
+    </style>
+<figure class = "text-center">
+<h1>{{groupname}}</h1>
+</figure>
+<div class = "table-responsive">
+    <table  class = "table table-bordered" style='text-align:center;vertical-align:middle'table-layout="fixed">
+        <h4>{{course_name}}</h4>
+            <tr>
+                <th colspan="1" >Тест</th>
+                {% for r in tests_info %}
+                <th colspan="{{r[1]}}">{{r[0]}}</th>
+                {% endfor %} 
+                <th rowspan="2" colspan="1">Оценка</th>
+                </tr>  
+              <tr>
+                <th colspan="1" >Срок сдачи</th>
+                {% for r in tests_info %}
+                <th colspan="{{r[1]}}" type="text" style='text-align:center'
+                    >{{r[3]}}</th>
+                
+                {% endfor %}  
+              </tr> 
+           
+        <tbody>
+            {% for j in range(students|length) %}
+                <tr>
+                    <td class="table-active">{{students[j].name+" "+students[j].surname}}</td>
+                    {% for t in tests_info %}
+                    {% for r in results %}
+                    {% if students[j].id == r.user_id %}
+                    {% if r.mark=="0/0"%}
+                    
+                    {% if t[2]==r.theme_id%}
+                    {% if t[3]!="нет" and format_date(t[3],30)%}
+                        <td  style="background-color:#faf685e1; " data-toggle="popover" title="Сведения о результате" data-html = "true" data-content="Тест - {{r.theme}} <br> Раздел - {{r.part_theme}}">{{r.mark}}</td>
+                    
+                    {% elif t[3]!="нет"and format_date(t[3],60) %}
+                    <td  style="background-color:#f5c3c7; " data-toggle="popover" title="Сведения о результате" data-html = "true" data-content="Тест - {{r.theme}} <br> Раздел - {{r.part_theme}}">{{r.mark}}</td>
+                    {% else %}
+                    <td  style="background-color:#f4ffeb; " data-toggle="popover" title="Сведения о результате" data-html = "true" data-content="Тест - {{r.theme}} <br> Раздел - {{r.part_theme}}">{{r.mark}}</td>
+                    {% endif %}
+                    {% endif %}
+                    
+                    {% else %}
+                    {% if t[2]==r.theme_id%}
+                    {% if t[3]!="нет" and format_date(t[3],30,r.date)%}
+                        <td  style="background-color:#f8f593e1; "  data-toggle="popover" title="Сведения о результате" data-html = "true" data-content="Тест - {{r.theme}} <br> Раздел - {{r.part_theme}}<br> Дата попытки - {{r.date}} <br> Число попыток - {{r.tries}}">{{r.mark}}</td>
+                    
+                    {% elif t[3]!="нет" and format_date(t[3],60,r.date)%}
+                    <td  style="background-color:#f5c3c7; " data-toggle="popover" title="Сведения о результате" data-html = "true" data-content="Тест - {{r.theme}} <br> Раздел - {{r.part_theme}}<br> Дата попытки - {{r.date}} <br> Число попыток - {{r.tries}}">{{r.mark}}</td>
+                    {% elif t[3]!="нет" and format_date(t[3],7,r.date)%}
+                    <td  style="background-color:#ccffcd; " data-toggle="popover" title="Сведения о результате" data-html = "true" data-content="Тест - {{r.theme}} <br> Раздел - {{r.part_theme}}<br> Дата попытки - {{r.date}} <br> Число попыток - {{r.tries}}">{{r.mark}}</td>                   
+                    {% else %}
+                    <td  style="background-color:#f4ffeb; "  data-toggle="popover" title="Сведения о результате" data-html = "true" data-content="Тест - {{r.theme}} <br> Раздел - {{r.part_theme}}<br> Дата попытки - {{r.date}} <br> Число попыток - {{r.tries}}">{{r.mark}}</td>
+                    {% endif %}
+                    {% endif %}
+
+                    {% endif %}
+                    
+                   
+                    {% endif %}
+                    {% endfor %}
+                    {% endfor %}
+                    {% if averages[j].average< 0.61*max_score %}
+                    <td style="background-color:#f5c3c7; " class="table-success" data-toggle="popover" title="Баллы" data-html = "true" data-content="Выполнено {{averages[j].done}} из {{averages[j].out_of}} заданий<br>Всего баллов - {{averages[j].average}}">неуд</td>
+                    {% elif averages[j].average>= 0.61*max_score and averages[j].average< 0.72*max_score %}
+                    <td style="background-color:#f8f593e1; " class="table-success" data-toggle="popover" title="Баллы" data-html = "true" data-content="Выполнено {{averages[j].done}} из {{averages[j].out_of}} заданий<br>Всего баллов - {{averages[j].average}}">удовл</td>
+                    {% elif averages[j].average>= 0.72*max_score and averages[j].average< 0.85*max_score %}
+                    <td style="background-color:#f4ffeb; " class="table-success" data-toggle="popover" title="Баллы" data-html = "true" data-content="Выполнено {{averages[j].done}} из {{averages[j].out_of}} заданий<br>Всего баллов - {{averages[j].average}}">хор</td>
+                    {% else %}
+                    <td style="background-color:#ccffcd; " class="table-success" data-toggle="popover" title="Баллы" data-html = "true" data-content="Выполнено {{averages[j].done}} из {{averages[j].out_of}} заданий<br>Всего баллов - {{averages[j].average}}">отл</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            <button type="submit" class="btn btn-info" onclick="goBack()">Назад</button>
+        </tbody>
+    </table>
+    
+</div>
+
+<div class="container" style="float: left;">
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                            aria-controls="collapseOne">
+                            Добавить/изменить срок сдачи теста
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+
+                    <form action="/add_deadline" method="POST"  class="form-inline">
+        
+                        <select name="test_id" class="browser-default custom-select" aria-label="Default select example" required>
+                            {% for r in tests_info %}
+                            <option value={{r[2]}}>{{r[0]}}</option>
+                            {% endfor %}
+                        </select>
+                        <input type="date" class="form-control" name="date" placeholder="Срок сдачи теста"required>
+                        <input type="hidden" name="group_id" value="{{group_id}}">
+                        <input type="hidden" name="test_id" value="{{test_id}}">
+                        <button type="submit" class=" btn btn-info">Сохранить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" >
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                            aria-expanded="false" aria-controls="collapseTwo">
+                            Перевод студента в другую группу
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body">
+                    <form action="/student_transfer" method="POST"  class="form-inline">
+        
+                        <select name="student_id" class="browser-default custom-select" aria-label="Default select example" required>
+                            {% for j in range(students|length) %}
+                            <option value={{students[j].id}}>{{students[j].name+" "+students[j].surname}}</option>
+                            {% endfor %}
+                        </select>
+                        <select name="new_group_id" class="browser-default custom-select" aria-label="Default select example" required>
+                            {% for j in range(groups|length) %}
+                            <option value={{groups[j].id}}>{{groups[j].name}}</option>
+                            {% endfor %}
+                        </select>
+                        <input type="hidden" name="new_group_id" value="{{new_group_id}}">
+                        <input type="hidden" name="group_id" value="{{group_id}}">
+                        <input type="hidden" name="student_id" value="{{student_id}}">
+                        <input type="hidden" name="course_id" value="{{course_id}}">
+                        <button type="submit" class=" btn btn-info">Перевести</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function(){
+      $('[data-toggle="popover"]').popover();
+    });
+
+    function goBack() {
+  window.history.back();
+}
+function plusDay() {
+}
+
+
+
+   
+    </script>
+    
+{% endblock %}

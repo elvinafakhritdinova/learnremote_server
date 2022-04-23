@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <table class="mt-2 table">
+        <thead>
+            <h4>{{groupname}}</h4>
+        
+        </thead>
+        <tbody>
+            {% for i in grcourses%}
+            <tr>
+            {% for course in courses%}
+            {% if i.course_id == course.id %}
+            
+            <td>                
+                <form action = "/students{{group_id}}/marks_course{{i.course_id}}" method ="post">
+                    
+                    <input type="hidden" name="course_id" value="{{i.course_id}}">
+                    <input type="hidden" name="course_name" value="{{course.title}}">
+                    <input type="hidden" name="group_id" value="{{group_id}}">
+                    <button type = "submit" class = "btn btn-info">{{course.title}}</button>
+                </form>
+            </td>
+            {% endif %}
+            {% endfor %}
+            {% if i.active == True %}
+            <td >Текущий курс</td>
+            {% else %}
+            <td>Курс завершен</td>
+                {% endif %}         
+            </tr>
+            {% endfor %}
+       
+       
+        </tbody>
+    </table>
+    {% if sum_courses>2 %}
+    <div class="accordion" id="insurance-steps">
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+              <button class="btn btn-link second-step" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                      Итоговые оценки
+                </button>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#insurance-steps">
+            <div class="card-body">
+                <table class = "table table-bordered" style='text-align:center;vertical-align:middle'table-layout="fixed">
+                        <tr>
+                            <th  >Студент</th>                        
+                           
+                            <th >Оценка</th>
+                            </tr>                         
+                    <tbody>
+                        {% for j in students %}
+                        {% for i in itogs %}
+                        {% if j.id==i[0] %}
+                            <tr>
+                                <td >{{j.name+" "+j.surname}}</td>
+                                <td >{{i[1]}}</td>
+                                
+                            </tr>
+                        {% endif %}
+                        {% endfor %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
+          </div>
+    {% endif %}
+</div>
+{% endblock %}

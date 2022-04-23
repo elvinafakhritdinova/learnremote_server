@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<test theme="Речевой этикет"><part number="1" part_id="74"><text>Закончите диалоги, выбрав правильный ответ</text><question number="1"><text>Alice: Hi, Steve!
+Steve: Oh, hi! How are you?
+Alice: _________________</text><answers><answer isTrue="1"><text>Fine, thanks.</text></answer><answer isTrue="0"><text>What about you?</text></answer><answer isTrue="0"><text>I am 17 years old.</text></answer><answer isTrue="0"><text>See you later.</text></answer></answers></question><question number="2"><text>Kate: I’d like to introduce you to Mary.
+Jim: Hello, Mary. ________________</text><answers><answer isTrue="0"><text>I am from Great Britain.</text></answer><answer isTrue="0"><text>I am Tom’s brother.</text></answer><answer isTrue="1"><text>Pleased to meet you.</text></answer><answer isTrue="0"><text>Where are you from?</text></answer></answers></question><question number="3"><text>Mike: Bye, Barbara! See you later.
+Barbara: Bye! _______________</text><answers><answer isTrue="0"><text>How are things?</text></answer><answer isTrue="0"><text>Pleased to meet you, too.</text></answer><answer isTrue="0"><text>Fine, thanks.</text></answer><answer isTrue="1"><text>Have a nice day!</text></answer></answers></question><question number="4"><text>Jill: ___________________?
+Bob: I am a doctor. And you?
+Jill: I am an accountant.</text><answers><answer isTrue="0"><text>Where do you work?</text></answer><answer isTrue="1"><text>What is your job?</text></answer><answer isTrue="0"><text>What company do you work for?</text></answer><answer isTrue="0"><text>What is your hobby?</text></answer></answers></question><question number="5"><text>Kim: _______________?
+Beth: I am twenty. And you?
+Kim: I am twenty-one.</text><answers><answer isTrue="0"><text>How are you?</text></answer><answer isTrue="0"><text>How many years are you?</text></answer><answer isTrue="1"><text>How old are you?</text></answer><answer isTrue="0"><text>How old you are?</text></answer></answers></question><question number="6"><text>A: Where are you from?
+B: I am from Poland.
+A: ______________
+B: I am Polish</text><answers><answer isTrue="1"><text>What nationality are you?</text></answer><answer isTrue="0"><text>Where are you from?</text></answer><answer isTrue="0"><text>What is your job?</text></answer><answer isTrue="0"><text>How are you?</text></answer></answers></question><question number="6"><text>A: What is Mary’s job?
+B: _______________</text><answers><answer isTrue="1"><text>Mary is a shop assistant.</text></answer><answer isTrue="0"><text>Her job is very challenging.</text></answer><answer isTrue="0"><text>Mary’s job is a shop assistant.</text></answer><answer isTrue="0"><text>One of the best!</text></answer></answers></question><question number="8"><text>Bob: What is your sister’s name?
+Tom: Her name is Sue.
+Bob: _____________?
+Tom: No, she is single.</text><answers><answer isTrue="0"><text>Is she older than you?</text></answer><answer isTrue="1"><text>Is she married?</text></answer><answer isTrue="0"><text>Is she friendly?</text></answer><answer isTrue="0"><text>Is she younger than you?</text></answer></answers></question><question number="9"><text>Mario: I’m from Italy.
+John: ____________?
+Mario: Rome. What about you?</text><answers><answer isTrue="0"><text>Really?</text></answer><answer isTrue="1"><text>Where exactly?</text></answer><answer isTrue="0"><text>What?</text></answer><answer isTrue="0"><text>Are you serious?</text></answer></answers></question><question number="10"><text>Receptionist: Sorry, I didn’t catch your name.
+________________?
+Student: Yes, of course. My name is Mike.</text><answers><answer isTrue="0"><text>Could you answer, please?</text></answer><answer isTrue="0"><text>Could you call back later, please?</text></answer><answer isTrue="1"><text>Could you repeat it, please?</text></answer><answer isTrue="0"><text>Could you write it down?</text></answer></answers></question><question number="11"><text>Matt: Hi, Jane!
+Jane: Hello, Matt. Matt, this is Frank. ________________
+Matt: Pleased to meet you, Frank.
+Frank: Pleased to meet you, too.</text><answers><answer isTrue="0"><text>We are hungry.</text></answer><answer isTrue="0"><text>How are things?</text></answer><answer isTrue="0"><text>Have a nice evening!</text></answer><answer isTrue="1"><text>He is my friend from the UK.</text></answer></answers></question><question number="12"><text>Receptionist: Could you spell your surname, please?
+Student: Certainly. ________________</text><answers><answer isTrue="0"><text>My surname is Benedetti.</text></answer><answer isTrue="1"><text>B-E-N-E-D-E-double T-I.</text></answer><answer isTrue="0"><text>It’s Benedetti.</text></answer><answer isTrue="0"><text>Benedetti is my surname.</text></answer></answers></question><question number="13"><text>Bob: Are you on Instagram?
+Ann: Yes, I am.
+Bob: ________________
+Ann: Ann_Brown15.</text><answers><answer isTrue="0"><text>What’s your nickname?</text></answer><answer isTrue="0"><text>What’s your registration name?</text></answer><answer isTrue="1"><text>What’s your username?</text></answer><answer isTrue="0"><text>What’s your Instagram name?</text></answer></answers></question><question number="14"><text>Mark: In my free time I don’t mind playing chess.
+________________
+Steve: I like playing board games.</text><answers><answer isTrue="1"><text>What’s your hobby?</text></answer><answer isTrue="0"><text>What’s your interest?</text></answer><answer isTrue="0"><text>What hobby you have?</text></answer><answer isTrue="0"><text>Which is your hobby?</text></answer></answers></question><question number="15"><text>Receptionist: ________________
+Student: Yes, it’s 2224-457.</text><answers><answer isTrue="0"><text>Give me your phone number.</text></answer><answer isTrue="1"><text>Could I take your phone number?</text></answer><answer isTrue="0"><text>What’s your phone number?</text></answer><answer isTrue="0"><text>Could you spell your phone number?</text></answer></answers></question></part></test>

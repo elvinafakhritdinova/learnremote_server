@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h4>{{title}}</h4>
+    <h4>Количество вопросов в части: {{count}}</h4>
+    <form action="/delete_part{{part_id}}" method="post">
+        <div class="mb-3">
+            <button type="submit" class="btn btn-danger mb-2">Удалить раздел</button>
+        </div>
+    </form>
+    <table class="mt-3 table">
+        <h5>Лекция к разделу</h5>
+        <form action="/edit_lecture{{part_id}}" method="POST"  class="form-inline">
+        
+        <select name="lecture_id" class="browser-default custom-select" aria-label="Default select example" required>
+            <option value={{part_lecture.id}} selected>{{part_lecture.title}} - {{part_lecture.sub_title}}</option>
+            {% for lecture in lectures %}
+            {% if lecture.id!=part_lecture.id %}
+            <option value={{lecture.id}}>{{lecture.title}} - {{lecture.sub_title}}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+        <input type="hidden" name="lecture_id" value="{{lecture_id}}">
+        <input type="hidden" name="part_id" value="{{part_id}}">
+        <br></br>
+        <button type="submit" class=" btn btn-danger">Изменить</button>
+    </form>
+        <thead>
+        <tr>
+            <th scope="col">Вопросы</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in questions %}
+        <tr>
+            <td>                
+                <form action = "/edit_question{{i.id}}" method ="post">
+                    <input type="hidden" name="course_id" value="{{course_id}}">
+                    <input type="hidden" name="test_id" value="{{test_id}}">
+                    <button type = "submit" class = "btn btn-info">{{i.title}}</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <div class="container">
+    <div id="accordion">
+    <div class="card">
+        <div class="card-header" id="questionAddCard">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
+                        aria-expanded="false" aria-controls="collapseThree">
+                    Добавить вопрос в часть
+                </button>
+            </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+            <div class="card-body">
+                <form action="/add_question_in_part" method="post">
+                    <br>
+                    <div class="mb-3">
+                        <textarea type="text" class="mb-4 btn-lg form-control" name="question_title" id="questionInput"
+                               placeholder="Вопрос" required ></textarea>
+                        
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <input type ="radio" class = "form-control" name ="radio" value="radio1" checked>
+                        </div>
+                        <div class="col-sm">
+                            <input type="text" class="form-control" name="answer1"placeholder="Вариант ответа 1" required>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <input type ="radio" class = "form-control" name ="radio" value="radio2" checked>
+                        </div>
+                        <div class="col-sm">
+                            <input type="text" class="form-control" name="answer2"placeholder="Вариант ответа 2" required>
+                        </div>
+                    </div>
+                    <br>
+                    {% for i in range (3,11) %}
+                    <div class="mb-3">
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <input type ="radio" class = "form-control" name ="radio" value="radio{{i}}">
+                        </div>
+                        <div class="col-sm">
+                            <input type="text" class="form-control" name="answer{{i}}"placeholder="Вариант ответа {{i}}">
+                        </div>
+                    </div>
+                    </div>
+                    <br>
+                    {% endfor %}
+                    <input type="hidden" name="course_id" value="{{course_id}}">
+                    <input type="hidden" name="test_id" value="{{test_id}}">
+                    <input type="hidden" name="part_id" value="{{part_id}}">
+                    <input type="hidden" name="question_title" value="{{question_title}}">
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary mb-2">Добавить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+    <h2 class="display-4 ">{{message}}</h2>
+    <br>
+    <form action="/test{{test_id}}" method="get">
+        <input type="hidden" name="course_id" value="{{course_id}}">
+        <input type="hidden" name="test_id" value="{{test_id}}">
+        <button type="submit" class="btn btn-info" >Назад</button>
+    </form>
+</div>
+{% endblock %}
